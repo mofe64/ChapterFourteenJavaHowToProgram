@@ -1,8 +1,6 @@
 package com.nubari;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class TextAnalysis {
 
@@ -30,6 +28,45 @@ public class TextAnalysis {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public static void countWordOccurrences(String phrase) {
+        Object[] uniqueWords = new HashSet<>(Arrays.asList(phrase.split(" "))).toArray();
+        String[] words = phrase.split(" ");
+        int[] frequency = new int[uniqueWords.length];
+        for (int i = 0; i < uniqueWords.length; i++) {
+            String uniqueWord = (String) uniqueWords[i];
+            for (String word : words) {
+                if (uniqueWord.equalsIgnoreCase(word)) {
+                    frequency[i]++;
+                }
+            }
+        }
+        for (int i = 0; i < frequency.length; i++) {
+            System.out.println(uniqueWords[i] + " occurred " + frequency[i] + " time(s) ");
+        }
+    }
+
+    public static void countWordLetterOccurrences(String phrase) {
+        int numberOfOneLetterWords = 0;
+        int numberOfTwoLetterWords = 0;
+        int numberOfThreeLetterWords = 0;
+        String[] wordsArray = phrase.split(" ");
+        for (String word : wordsArray) {
+            if (word.length() == 1) {
+                numberOfOneLetterWords++;
+            }
+            if (word.length() == 2) {
+                numberOfTwoLetterWords++;
+            }
+            if (word.length() == 3) {
+                numberOfThreeLetterWords++;
+            }
+
+        }
+        System.out.println("There were/was " +  numberOfOneLetterWords + " one letter words");
+        System.out.println("There were/was " +  numberOfTwoLetterWords + " two letter words");
+        System.out.println("There were/was " +  numberOfThreeLetterWords + " three letter words");
     }
 
 }
